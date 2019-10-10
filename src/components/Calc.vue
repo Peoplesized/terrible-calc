@@ -40,7 +40,7 @@ export default Vue.extend({
         this.calc_count = 0;
       }
       this.calc_count += 1;
-      this.cumulative -= 0.1;
+      this.cumulative -= 0.25;
       if (this.cumulative < 0.5) {
         this.cumulative = 1;
       }
