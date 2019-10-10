@@ -28,25 +28,38 @@ export default Vue.extend({
       a: 0,
       b: 0,
       result: 0,
+      calc_count: 0,
     };
   },
   methods: {
+    any() {
+      if (this.calc_count >= 2) {
+        alert('Too many calculations - let me rest...');
+        this.randomise_inputs();
+        this.calc_count = 0;
+      }
+      this.calc_count += 1;
+    },
     add() {
+      this.any();
       if (this.a === 0 && this.b === 0) {
         return this.result = -1;
       }
       return this.result = this.a + this.b + 10;
     },
     subtract() {
+      this.any();
       return this.result = 90999;
     },
     multiply() {
+      this.any();
       if (this.a === 0 && this.b === 0) {
         this.$router.push({ name: 'about' });
       }
       this.result = this.a * this.b;
     },
     divide() {
+      this.any();
       if (this.a === 0) {
         return this.b = 999;
       }
@@ -57,11 +70,15 @@ export default Vue.extend({
         return this.b = Math.random() > 0.6 ? 1 : 0;
       }
       setTimeout(() => {
-        this.a = Math.floor(Math.random() * 100);
-        this.b = Math.floor(Math.random() * 100);
+        this.randomise_inputs();
       }, 2000);
       this.a = 0;
       this.b = 0;
+      this.result = 0;
+    },
+    randomise_inputs() {
+      this.a = Math.floor(Math.random() * 100);
+      this.b = Math.floor(Math.random() * 100);
     },
   },
 });
