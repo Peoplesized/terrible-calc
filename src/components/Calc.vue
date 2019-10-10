@@ -1,12 +1,12 @@
 <template>
-  <div class="hello">
+  <div>
     <p>
       <label>Value a =</label>
-      <input type="number" v-model.number="a" />
+      <input type="number" @blur='a -= 1' v-model.number="a" />
     </p>
     <p>
       <label>Value b =</label>
-      <input type="number" v-model.number="b" />
+      <input type="number" @blur='b -= 1' v-model.number="b" />
     </p>
     <p>
       <button @click="add">+</button>
@@ -15,7 +15,7 @@
       <button @click="divide">÷</button>
       <button @click="clear">C</button>
     </p>
-    <p>Result: {{result}}</p>
+    <p :style='{fontSize: cumulative + "em"}'>Result: {{result}}</p>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default Vue.extend({
       b: 0,
       result: 0,
       calc_count: 0,
+      cumulative: 1,
     };
   },
   methods: {
@@ -39,6 +40,10 @@ export default Vue.extend({
         this.calc_count = 0;
       }
       this.calc_count += 1;
+      this.cumulative -= 0.1;
+      if (this.cumulative < 0.5) {
+        this.cumulative = 1;
+      }
     },
     add() {
       this.any();
@@ -66,6 +71,7 @@ export default Vue.extend({
       this.result = this.a / this.b;
     },
     clear() {
+      this.any();
       if (this.b === 0) {
         return this.b = Math.random() > 0.6 ? 1 : 0;
       }
