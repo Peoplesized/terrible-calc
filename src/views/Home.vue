@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <h1>TerribleCalc</h1>
+    <Calc/>
+    <p class='hard-to-read'>version 4.3.2</p>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Calc from '@/components/Calc.vue'; // @ is an alias to /src
 
 export default Vue.extend({
   name: 'home',
   components: {
-    HelloWorld,
+    Calc,
   },
 });
 </script>
+
+<style>
+  .hard-to-read {
+    color: lightgray;
+    font-size: 0.7em;
+  }
+</style>
