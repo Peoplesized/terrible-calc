@@ -10,6 +10,17 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  mounted() {
+    console.log("Nope - checking the console.log or source code is cheating!");
+  },
+});
+</script>
+
+
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
